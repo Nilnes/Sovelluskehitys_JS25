@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace Sovelluskehitys_JS25
 {
@@ -27,13 +29,27 @@ namespace Sovelluskehitys_JS25
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            tekstikentta_2.Text = tekstikentta_1.Text;
+            string path = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Omistaja\\Documents\\sovelluskehitys.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=True";
+            SqlConnection connection = new SqlConnection(path);
+            connection.Open();
+
+            string query = "SELECT * FROM products";
+            SqlCommand command = new SqlCommand(query, connection);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable dataTable = new DataTable("products");
+            adapter.Fill(dataTable);
+
+            productlist.ItemsSource = dataTable.DefaultView;
+
+            connection.Close();
+
+
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
-
     }
 }

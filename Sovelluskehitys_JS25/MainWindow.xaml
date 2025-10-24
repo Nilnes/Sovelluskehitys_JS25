@@ -9,12 +9,12 @@
     <Grid>
         <Label Content="Teksi :D" HorizontalAlignment="Left" Margin="80,52,0,0" VerticalAlignment="Top"/>
         <Button Content="Painike 1" HorizontalAlignment="Left" Margin="42,99,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="Button_Click"/>
-        <Button Content="Painike 2" HorizontalAlignment="Left" Margin="42,163,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="Button_Click_1"/>
+        <Button Content="Fetch data" HorizontalAlignment="Left" Margin="42,163,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="Button_Click_1"/>
         <TextBox x:Name="tekstikentta_1" HorizontalAlignment="Left" Margin="220,99,0,0" TextWrapping="Wrap" Text="TeksiBoksi" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         <TextBox x:Name="tekstikentta_2" HorizontalAlignment="Left" Margin="220,163,0,0" TextWrapping="Wrap" Text="TeksiBoksi" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
         <ComboBox Margin="469,100,74,262">
             <Grid/>
         </ComboBox>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="80,233,59,27"/>
+        <DataGrid x:Name="productlist" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="80,233,59,27"/>
     </Grid>
 </Window>
