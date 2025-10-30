@@ -18,18 +18,33 @@ namespace Sovelluskehitys_JS25
     /// </summary>
     public partial class MainWindow : Window
     {
+        string path = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Omistaja\\Documents\\sovelluskehitys.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=True";
+
         public MainWindow()
         {
             InitializeComponent();
+            Update_DataGrid(this, null);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            tekstikentta_1.Text = "Klikattu";
+            SqlConnection connection = new SqlConnection(path);
+            connection.Open();
+
+            string query = "INSERT INTO products (name, price, stock) VALUES ('"+Tex1.Text+"', "+Tex2.Text+","+Tex3.Text+");";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.ExecuteNonQuery();
+
+            connection.Close();
+
+            Update_DataGrid(sender, e);
+            Tex1.Clear();
+            Tex2.Clear();
+            Tex3.Clear();
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+
+        private void Update_DataGrid(object sender, RoutedEventArgs e)
         {
-            string path = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Omistaja\\Documents\\sovelluskehitys.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=True";
             SqlConnection connection = new SqlConnection(path);
             connection.Open();
 
@@ -43,12 +58,11 @@ namespace Sovelluskehitys_JS25
             productlist.ItemsSource = dataTable.DefaultView;
 
             connection.Close();
-
-
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Update_DataGrid(sender, e);
 
         }
     }
