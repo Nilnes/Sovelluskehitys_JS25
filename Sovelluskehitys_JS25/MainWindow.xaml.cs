@@ -13,9 +13,6 @@ using System.Data;
 
 namespace Sovelluskehitys_JS25
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         string path = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Omistaja\\Documents\\sovelluskehitys.mdf;Integrated Security=True;Connect Timeout=30;Encrypt=True";
@@ -24,6 +21,7 @@ namespace Sovelluskehitys_JS25
         {
             InitializeComponent();
             Update_DataGrid(this, null);
+            Update_ComboBox(this, null);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -38,6 +36,8 @@ namespace Sovelluskehitys_JS25
             connection.Close();
 
             Update_DataGrid(sender, e);
+            Update_ComboBox(sender, e);
+
             Tex1.Clear();
             Tex2.Clear();
             Tex3.Clear();
@@ -60,10 +60,30 @@ namespace Sovelluskehitys_JS25
             connection.Close();
         }
 
+        // cb = ComboBox
+        private void Update_ComboBox(object sender, RoutedEventArgs e)
+        {
+           SqlConnection connection = new SqlConnection(path);
+            connection.Open();
+
+            string query = "SELECT * FROM products";
+            SqlCommand command = new SqlCommand(query, connection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            cb_products.Items.Clear();
+
+            while (reader.Read())
+            {
+                cb_products.Items.Add(reader.GetString(1));
+            }
+
+            reader.Close();
+            connection.Close();
+        }
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Update_DataGrid(sender, e);
-
         }
     }
 }

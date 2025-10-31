@@ -12,10 +12,11 @@
         <Label Content="Varastosaldo" HorizontalAlignment="Left" Margin="441,87,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.422,0.629"/>
         
         <Button Content="Add new" HorizontalAlignment="Left" Margin="532,172,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="Button_Click"/>
-        <Button Content="Fetch data" HorizontalAlignment="Left" Margin="80,57,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="Button_Click_1"/>
+        <Button Content="Fetch data" HorizontalAlignment="Left" Margin="80,191,0,0" VerticalAlignment="Top" Height="26" Width="126" Click="Button_Click_1"/>
         <DataGrid x:Name="productlist" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="80,233,59,27"/>
         <TextBox x:Name="Tex1" HorizontalAlignment="Left" Margin="538,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Tex2" HorizontalAlignment="Left" Margin="538,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.502,3.36"/>
         <TextBox x:Name="Tex3" HorizontalAlignment="Left" Margin="538,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cb_products" HorizontalAlignment="Left" Margin="259,53,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
